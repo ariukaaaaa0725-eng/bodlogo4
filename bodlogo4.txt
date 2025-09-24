@@ -1,38 +1,14 @@
 def create_stone_piles(n):
-    """
-    Create n stone piles where:
-    - First pile has n stones
-    - All piles have the same parity (even if n is even, odd if n is odd)
-    - Each pile has more stones than the previous pile (minimum increment of 2)
-    
-    Args:
-        n: Number of piles to create (also the number of stones in the first pile)
-        
-    Returns:
-        list: List of stones in each pile
-    """
     if n <= 0:
         return []
-    
-    piles = []
+      piles = []
     current_stones = n
-    
-    # Create n piles
     for i in range(n):
         piles.append(current_stones)
-        current_stones += 2  # Increment by 2 to maintain parity
-    
+        current_stones += 2 
     return piles
 
-
 def analyze_piles(piles, n):
-    """
-    Analyze the stone piles to verify they meet the requirements.
-    
-    Args:
-        piles: List of stone counts in each pile
-        n: Original input number
-    """
     print(f"Input: {n}")
     print(f"Output: {piles}")
     print(f"Number of piles: {len(piles)}")
@@ -43,16 +19,12 @@ def analyze_piles(piles, n):
     
     print(f"First pile stones: {piles[0]}")
     print(f"Parity (even/odd): {'even' if n % 2 == 0 else 'odd'}")
-    
-    # Check if all piles have the same parity
     all_same_parity = all(stone % 2 == n % 2 for stone in piles)
     print(f"All piles have same parity: {all_same_parity}")
-    
-    # Check if each pile has more stones than the previous
+
     increasing = all(piles[i] < piles[i+1] for i in range(len(piles)-1))
     print(f"Piles are increasing: {increasing}")
     
-    # Check increment pattern
     if len(piles) > 1:
         increments = [piles[i+1] - piles[i] for i in range(len(piles)-1)]
         print(f"Increments between piles: {increments}")
@@ -60,9 +32,6 @@ def analyze_piles(piles, n):
         print(f"All increments are 2: {all_increment_by_2}")
     
     print("-" * 50)
-
-
-# Test the function with the provided examples
 def test_function():
     test_cases = [
         (2, [2, 4]),
@@ -88,20 +57,7 @@ def test_function():
 
 
 def mathematical_formula(n):
-    """
-    Alternative implementation using mathematical formula.
-    The i-th pile (0-indexed) has n + 2*i stones.
-    
-    Args:
-        n: Number of piles and stones in first pile
-        
-    Returns:
-        list: List of stones in each pile
-    """
     return [n + 2*i for i in range(n)]
-
-
-# Additional test for edge cases
 def test_edge_cases():
     print("Testing Edge Cases:")
     print("=" * 50)
@@ -112,27 +68,21 @@ def test_edge_cases():
         result = create_stone_piles(case)
         print(f"Input: {case}")
         print(f"Output: {result}")
-        
-        # Verify with mathematical formula
+    
         formula_result = mathematical_formula(case)
         matches_formula = result == formula_result
         print(f"Matches formula: {matches_formula}")
         print("-" * 30)
 
-
-# Run the tests
 if __name__ == "__main__":
     test_function()
     test_edge_cases()
     
-    # Interactive example
     print("\nInteractive Example:")
     print("=" * 50)
     example_n = 7
     result = create_stone_piles(example_n)
     analyze_piles(result, example_n)
-    
-    # Show the pattern
     print("Pattern explanation:")
     print("For n piles starting with n stones:")
     print("Pile 1: n stones")
@@ -140,4 +90,4 @@ if __name__ == "__main__":
     print("Pile 3: n + 4 stones")
     print("...")
     print(f"Pile i: n + 2*(i-1) stones")
-    print(f"Last pile: n + 2*(n-1) = {example_n} + 2*({example_n}-1) = {example_n + 2*(example_n-1)} stones")
+  print(f"Last pile: n + 2*(n-1) = {example_n} + 2*({example_n}-1) = {example_n + 2*(example_n-1)} stones")
